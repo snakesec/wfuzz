@@ -1,0 +1,159 @@
+.TH WFUZZ "1" "June 2018" "wfuzz 2.2.11" "User Commands"
+.SH NAME
+wfuzz \- a web application bruteforcer
+.SH SYNOPSIS
+.B wfuzz
+[\fI\,options\/\fR] \fI\,-z payload,params <url>\/\fR
+.SH OPTIONS
+.TP
+.BR \-h
+Print information about available arguments.
+.TP
+.BR \-\-help
+Advanced help.
+.TP
+.BR \-\-version
+Wfuzz version details
+.TP
+.BR \-e " <type>"
+List of available encoders/payloads/iterators/printers/scripts
+.TP
+.BR \-\-recipe " <filename>"
+Reads options from a recipe
+.TP
+.BR \-\-dump\-recipe " <filename>"
+Prints current options as a recipe
+.TP
+.BR \-\-oF " <filename>"
+Saves fuzz results to a file. These can be consumed later using the wfuzz payload.
+.TP
+.BR \-c
+Output with colors
+.TP
+.BR \-v
+Verbose information.
+.TP
+.BR \-f " filename,printer"
+Store results in the output file using the specified printer (raw printer if omitted).
+.TP
+.BR \-o " printer"
+Format output using the specified printer.
+.TP
+.BR \-\-interact
+(beta) If selected, all key presses are captured. This allows you to interact with the program.
+.TP
+.BR \-\-dry\-run
+Print the results of applying the requests without actually making any HTTP request.
+.TP
+.BR \-\-prev
+Print the previous HTTP requests (only when using payloads generating fuzzresults)
+.TP
+.BR \-p " addr"
+Use Proxy in format ip:port:type. Repeat option for using various proxies.
+Where type could be SOCKS4, SOCKS5 or HTTP if omitted.
+.TP
+.BR \-t " N"
+Specify the number of concurrent connections (10 default)
+.TP
+.BR \-s " N"
+Specify time delay between requests (0 default)
+.TP
+.BR \-R " depth"
+Recursive path discovery being depth the maximum recursion level.
+.TP
+.BR \-L ", " \-\-follow
+Follow HTTP redirections
+.TP
+.BR \-Z
+Scan mode (Connection errors will be ignored).
+.TP
+.BR \-\-req-delay " N"
+Sets the maximum time in seconds the request is allowed to take (CURLOPT_TIMEOUT). Default 90.
+.TP
+.BR \-\-conn-delay " N"
+Sets the maximum time in seconds the connection phase to the server to take (CURLOPT_CONNECTTIMEOUT). Default 90.
+.TP
+.BR \-A
+Alias for \fB\-\-script\fR=\fI\,default\/\fR \fB\-v\fR \fB\-c\fR
+.TP
+.BR \-\-script=
+Equivalent to \fB\-\-script\fR=\fI\,default\/\fR
+.TP
+.BR \-\-script=<plugins>
+Runs script's scan. <plugins> is a comma separated list of plugin\-files or plugin\-categories
+.TP
+.BR \-\-script\-help=<plugins>
+Show help about scripts.
+.TP
+.BR \-\-script\-args " n1=v1,..."
+Provide arguments to scripts. ie. \fB\-\-script\-args\fR grep.regex="<A href=\e"(.*?)\e">"
+.TP
+.BR \-u " url"
+Specify a URL for the request.
+.TP
+.BR \-m " iterator"
+Specify an iterator for combining payloads (product by default)
+.TP
+.BR \-z " payload"
+Specify a payload for each FUZZ keyword used in the form of type,parameters,encoder.
+A list of encoders can be used, ie. md5\-sha1. Encoders can be chained, ie. md5@sha1.
+Encoders category can be used. ie. url.
+Use help as a payload to show payload plugin's details (you can filter using --slice)
+.TP
+.BR \-\-zP " <params>"
+Arguments for the specified payload (it must be preceded by -z or -w).
+.TP
+.BR \-\-slice " <filter>"
+Filter payload's elements using the specified expression. It must be preceded by -z.
+.TP
+.BR \-w " wordlist"
+Specify a wordlist file (alias for \fB\-z\fR file,wordlist).
+.TP
+.BR \-V " alltype"
+All parameters bruteforcing (allvars and allpost). No need for FUZZ keyword.
+.TP
+.BR \-X " method"
+Specify an HTTP method for the request, ie. HEAD or FUZZ
+.TP
+.BR \-b " cookie"
+Specify a cookie for the requests. Repeat option for various cookies.
+.TP
+.BR \-d " postdata"
+Use post data (ex: "id=FUZZ&catalogue=1")
+.TP
+.BR \-H " headers"
+Use headers (ex:"Host:www.mysite.com,Cookie:id=1312321&user=FUZZ"). Repeat option for various headers.
+.TP
+.BR \-\-basic/ntlm/digest " auth"
+in format "user:pass" or "FUZZ:FUZZ" or "domain\eFUZ2Z:FUZZ"
+.TP
+.BR \-\-hc/hl/hw/hh " N[,N]+"
+Hide responses with the specified code/lines/words/chars (Use BBB for taking values from baseline)
+.TP
+.BR \-\-sc/sl/sw/sh " N[,N]+"
+Show responses with the specified code/lines/words/chars (Use BBB for taking values from baseline)
+.TP
+.BR \-\-ss/hs " regex"
+Show/Hide responses with the specified regex within the content
+.TP
+.BR \-\-filter " <filter>"
+Filter responses using the specified expression (Use BBB for taking values from baseline)
+It should be composed of: c,l,w,h/and,or/=,<,>,!=,<=,>=
+Keyword: FUZZ, ..., FUZnZ  wherever you put these keywords wfuzz will replace them with the values of the specified payload.
+Baseline: FUZZ{baseline_value} FUZZ will be replaced by baseline_value. It will be the first request performed and could be used as a base for filtering.
+.TP
+.BR \-\-prefilter " <filter>"
+Filter items before fuzzing using the specified expression.
+.PP
+.SH EXAMPLES
+.PP
+.nf
+.RS
+wfuzz \fB\-c\fR \fB\-z\fR file,users.txt \fB\-z\fR file,pass.txt \fB\-\-sc\fR 200 http://www.site.com/log.asp?user=FUZZ&pass=FUZ2Z
+.TP
+wfuzz \fB\-c\fR \fB\-z\fR range,1\-10 \fB\-\-hc\fR=\fI\,BBB\/\fR http://www.site.com/FUZZ{something not there}
+.TP
+wfuzz \fB\-\-script\fR=\fI\,robots\/\fR \fB\-z\fR list,robots.txt http://www.webscantest.com/FUZZ
+.RE
+.TP
+More examples are available in the README..

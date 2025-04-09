@@ -1,0 +1,223 @@
+wfuzz (3.1.0-6) unstable; urgency=medium
+
+  * Team upload.
+  * Patch-out little usage of 'six'
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 15 Feb 2025 12:18:45 +0100
+
+wfuzz (3.1.0-5) unstable; urgency=medium
+
+  * Team upload
+  * Removal of Python standard libraries in Python 3.13 (Closes: #1084727)
+    * Add dependency on python3-legacy-cgi
+    * Patch-out usage of 'pipes'
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 16 Nov 2024 15:41:57 +0100
+
+wfuzz (3.1.0-4.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Apply patch to remove use of distutils and imp (Closes: #1067598, #1066009).
+    - Remove python3-distutils from build dependency.
+    - Thanks ginggs for patch.
+
+ -- Emmanuel Arias <eamanu@debian.org>  Mon, 15 Jul 2024 22:40:19 -0300
+
+wfuzz (3.1.0-4) unstable; urgency=medium
+
+  * Team upload
+  * Build-Depends -= python3-future (Closes: #1060116)
+  * Uploaders = Debian Security Tools (Closes: #1050263)
+
+ -- Arnaud Rebillout <arnaudr@kali.org>  Mon, 22 Jan 2024 09:55:39 +0700
+
+wfuzz (3.1.0-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Joao Eriberto Mota Filho ]
+  * debian/clean: created to allow the source code to build twice.
+
+  [ Peter Wienemann ]
+  * Add patch from upstream PR 347 to fix pyparsing dependency.
+    (Closes: #1042315)
+
+ -- Joao Eriberto Mota Filho <eriberto@debian.org>  Fri, 18 Aug 2023 13:33:35 -0300
+
+wfuzz (3.1.0-2) unstable; urgency=medium
+
+  * Team upload
+  * Add missing dep python3-distutils (Closes: #1015016)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 19 Jul 2022 14:34:13 +0200
+
+wfuzz (3.1.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 3.1.0
+  * Refresh patches
+  * Update debian/watch to standard 4
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 16 Nov 2020 15:56:23 +0100
+
+wfuzz (3.0.1-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Samuel Henrique ]
+  * New upstream version 3.0.1 (closes: #969970)
+  * Bump DH to 13
+  * d/control:
+    - Add Rules-Requires-Root: no
+    - Remove pycurl strict version requirement
+  * d/patches: Update and refresh patches
+  * Configure git-buildpackage for Debian
+
+  [ Debian Janitor ]
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+ -- Samuel Henrique <samueloph@debian.org>  Fri, 11 Sep 2020 18:37:01 +0100
+
+wfuzz (2.4.5-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Samuel Henrique ]
+  * Add salsa-ci.yml
+
+  [ Sophie Brun ]
+  * New upstream version 2.4.5
+  * Add restrictions on python3-pycurl (temporary fix for
+    https://github.com/xmendez/wfuzz/issues/180)
+  * Refresh debian/patches
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 06 Feb 2020 11:34:44 +0100
+
+wfuzz (2.4-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 2.4
+  * Refresh patch switch-to-python3
+  * Install correctly documentation
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 03 May 2019 11:43:02 +0200
+
+wfuzz (2.3.4-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 2.3.4
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 25 Jan 2019 14:01:21 +0100
+
+wfuzz (2.3.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 2.3.3
+  * Bump Standards-Version to 4.3.0 (no change)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 10 Jan 2019 11:31:10 +0100
+
+wfuzz (2.3.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Switch to Python 3
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 13 Dec 2018 09:19:16 +0100
+
+wfuzz (2.3.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 2.3.1
+
+ -- Sophie Brun <sophie@freexian.com>  Fri, 16 Nov 2018 09:13:52 +0100
+
+wfuzz (2.3-1) unstable; urgency=medium
+
+  [ Sophie Brun ]
+  * Team upload.
+  * New upstream version 2.3
+  * Refresh patches
+  * Bump Standards-Version to 4.2.1 (no change required)
+
+  [ Raphaël Hertzog ]
+  * Switch to debhelper compat level 11
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 08 Nov 2018 14:39:42 +0100
+
+wfuzz (2.2.11-1) unstable; urgency=medium
+
+  [ Sophie Brun ]
+  * Team upload.
+  * New upstream version 2.2.11
+  * Update manpage
+
+  [ Raphaël Hertzog ]
+  * Update team maintainer address to Debian Security
+    Tools <team+pkg-security@tracker.debian.org>
+  * Update Standards-Version to 4.1.4.
+
+ -- Sophie Brun <sophie@freexian.com>  Tue, 05 Jun 2018 15:41:59 +0200
+
+wfuzz (2.2.9-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 2.2.9
+  * Update debian/copyright
+  * Refresh patches
+  * Bump Standards-Version to 4.1.3 (change Priority to optional)
+  * Update debian/control with new Vcs*
+  * Update manpage
+
+ -- Sophie Brun <sophie@freexian.com>  Wed, 21 Feb 2018 15:11:29 +0100
+
+wfuzz (2.2.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Bump Standards-Version to 4.1.1.
+    - New Build-Dependencies python-setuptools and dh-python.
+    - Add missing dependency python-pyparsing.
+  * debian/rules:
+    - Port to pybuild (modify debian/wfuzz.install accordingly).
+  * Update copyright years.
+  * Refresh patches for new upstream release.
+  * Update manpage to match new upstream release.
+  * Remove useless debian/docs.
+  * Run wrap-and-sort -a.
+
+ -- Hugo Lefeuvre <hle@debian.org>  Sat, 07 Oct 2017 10:25:41 +0200
+
+wfuzz (2.1.5-1) unstable; urgency=medium
+
+  [ Robert Haist ]
+  * New upstream version 2.1.5
+  * Update debian standards version and remove trailing whitespace
+  * Update manpage to match new upstream release.
+
+  [ Lukas Schwaighofer ]
+  * Update to debhelper compatibility level 10
+  * enable dh_python2 to perform python byte compilation on installation
+  * fix spelling mistake in manpage
+  * drop debian/dirs, dh_install creates the required directories without help
+  * rename debian/manpages to debian/wfuzz.manpages for consistency
+  * insert the /usr/share/wfuzz python search path at the beginning of the
+    search list (not at the end)
+  * install wfuzz.py as /usr/bin/wfuzz (drop helper script to launch it)
+
+ -- Robert Haist <rhaist@mailbox.org>  Sun, 25 Jun 2017 17:21:41 +0200
+
+wfuzz (2.1.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add gbp.conf file (thanks Gianfranco)
+  * Update manpage to match new upstream release.
+
+ -- Hugo Lefeuvre <hle@debian.org>  Sun, 18 Dec 2016 13:31:56 +0200
+
+wfuzz (2.1.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #831419).
+
+ -- Hugo Lefeuvre <hle@debian.org>  Fri, 29 Jul 2016 21:14:24 +0200

@@ -1,0 +1,7 @@
+# This is not general purpose text, it's data that we want that way
+national-encoding usr/share/wfuzz/wordlist/Injections/bad_chars.txt
+national-encoding usr/share/wfuzz/wordlist/general/big.txt
+national-encoding usr/share/wfuzz/wordlist/general/medium.txt
+# This is not documentation, it's data
+package-contains-documentation-outside-usr-share-doc usr/share/wfuzz/wordlist/*.txt
+

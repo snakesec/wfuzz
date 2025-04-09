@@ -1,0 +1,77 @@
+From: Sophie Brun <sophie@offensive-security.com>
+Date: Thu, 6 Feb 2020 11:34:12 +0100
+Subject: Switch to Python3
+
+Last-Update: 2019-05-03
+
+Change shebang to use python3
+Last-Update: 2019-05-03
+---
+ src/wfencode.py          | 2 +-
+ src/wfpayload.py         | 2 +-
+ src/wfuzz-cli.py         | 2 +-
+ src/wfuzz/wfuzz.py       | 2 +-
+ src/wxfuzz.py            | 2 +-
+ tests/test_acceptance.py | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/wfencode.py b/src/wfencode.py
+index 5960353..4cfeb5a 100755
+--- a/src/wfencode.py
++++ b/src/wfencode.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ from wfuzz.wfuzz import main_encoder
+ 
+ if __name__ == "__main__":
+diff --git a/src/wfpayload.py b/src/wfpayload.py
+index ae37f31..5004edc 100644
+--- a/src/wfpayload.py
++++ b/src/wfpayload.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ from wfuzz.wfuzz import main_filter
+ 
+ if __name__ == "__main__":
+diff --git a/src/wfuzz-cli.py b/src/wfuzz-cli.py
+index fb328f5..b084536 100644
+--- a/src/wfuzz-cli.py
++++ b/src/wfuzz-cli.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ from wfuzz.wfuzz import main
+ 
+diff --git a/src/wfuzz/wfuzz.py b/src/wfuzz/wfuzz.py
+index 559b9df..d6e1b5a 100644
+--- a/src/wfuzz/wfuzz.py
++++ b/src/wfuzz/wfuzz.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ import sys
+ import warnings
+ 
+diff --git a/src/wxfuzz.py b/src/wxfuzz.py
+index 937beb3..f9d05ac 100644
+--- a/src/wxfuzz.py
++++ b/src/wxfuzz.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ from wfuzz.wfuzz import main_gui
+ 
+diff --git a/tests/test_acceptance.py b/tests/test_acceptance.py
+index 50a0fff..2b71261 100644
+--- a/tests/test_acceptance.py
++++ b/tests/test_acceptance.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ # -*- coding: utf-8 -*-
+ 
+ import copy

@@ -1,0 +1,8 @@
+fix-header-script.patch
+switch-to-python3.patch
+add-sys-path-append
+upgrade-doc-installation.patch
+pr347.patch
+python3.12.patch
+Python3.13-removes-pipes.patch
+remove-six.patch

@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export PYBUILD_NAME = wfuzz
+
+%:
+	dh $@ --buildsystem=pybuild
+
+execute_after_dh_auto_install:
+	# Do not install wfencode, wfpayload and wxfuzz. They are buggy and
+	# their features are already provided by wfuzz
+	rm debian/wfuzz/usr/bin/wfencode
+	rm debian/wfuzz/usr/bin/wfpayload
+	rm debian/wfuzz/usr/bin/wxfuzz
+
+execute_after_dh_fixperms:
+	# Remove useless x permission on dictionary files.
+	chmod a-x debian/wfuzz/usr/share/wfuzz/wordlist/Injections/*
+	chmod a-x debian/wfuzz/usr/share/wfuzz/wordlist/general/megabeast.txt

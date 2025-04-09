@@ -1,0 +1,83 @@
+Description: Avoid the use of distutils and imp
+ No longer available in Python 3.12
+Bug-Debian: https://bugs.debian.org/1066009
+Bug-Debian: https://bugs.debian.org/1067598
+Author: Graham Inggs <ginggs@debian.org>
+Last-Update: 2024-03-25
+
+--- a/src/wfuzz/externals/moduleman/loader.py
++++ b/src/wfuzz/externals/moduleman/loader.py
+@@ -1,6 +1,6 @@
+ import inspect
+ import logging
+-import imp
++import importlib
+ import os.path
+ 
+ 
+@@ -52,14 +52,13 @@
+         """
+         self.__logger.debug("__load_py_from_file. START, file=%s" % (filename,))
+ 
+-        dirname, filename = os.path.split(filename)
+-        fn = os.path.splitext(filename)[0]
+-        exten_file = None
++        fn = os.path.splitext(os.path.split(filename)[1])[0]
+         module = None
+ 
+         try:
+-            exten_file, filename, description = imp.find_module(fn, [dirname])
+-            module = imp.load_module(fn, exten_file, filename, description)
++            spec = importlib.util.spec_from_file_location(fn, filename)
++            module = importlib.util.module_from_spec(spec)
++            spec.loader.exec_module(module)
+         except ImportError as msg:
+             self.__logger.critical(
+                 "__load_py_from_file. Filename: %s Exception, msg=%s" % (filename, msg)
+@@ -73,9 +72,6 @@
+             )
+             # raise msg
+             pass
+-        finally:
+-            if exten_file:
+-                exten_file.close()
+ 
+         if module is None:
+             return
+--- a/src/wfuzz/plugin_api/base.py
++++ b/src/wfuzz/plugin_api/base.py
+@@ -10,11 +10,24 @@
+ 
+ import sys
+ import os
+-from distutils import util
+ 
+ # python 2 and 3: iterator
+ from builtins import object
+ 
++def strtobool(val):
++    """Convert a string representation of truth to true (1) or false (0).
++
++    True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
++    are 'n', 'no', 'f', 'false', 'off', and '0'.  Raises ValueError if
++    'val' is anything else.
++    """
++    val = val.lower()
++    if val in ('y', 'yes', 't', 'true', 'on', '1'):
++        return 1
++    elif val in ('n', 'no', 'f', 'false', 'off', '0'):
++        return 0
++    else:
++        raise ValueError("invalid truth value {!r}".format(val))
+ 
+ # Util methods for accessing search results
+ class BasePlugin:
+@@ -74,7 +87,7 @@
+         )
+ 
+     def _bool(self, value):
+-        return bool(util.strtobool(value))
++        return bool(strtobool(value))
+ 
+ 
+ class BasePrinter:

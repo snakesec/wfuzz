@@ -1,0 +1,24 @@
+From: Sophie Brun <sophie@offensive-security.com>
+Date: Thu, 6 Feb 2020 11:34:12 +0100
+Subject: don't install docs as data_files
+
+Last-Update: 2019-05-03
+
+By default the docs are installed into /usr/docs.
+Last-Update: 2019-05-03
+---
+ setup.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index d75874e..7f9b58d 100644
+--- a/setup.py
++++ b/setup.py
+@@ -49,7 +49,6 @@ try:
+         packages=find_packages(where='src'),
+         package_dir={'wfuzz': 'src/wfuzz'},
+         include_package_data=True,
+-        package_data={'wfuzz': ['*.rst']},
+         entry_points={
+             'console_scripts': [
+                 'wfuzz = wfuzz.wfuzz:main',

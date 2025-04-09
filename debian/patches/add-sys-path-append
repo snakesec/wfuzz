@@ -1,0 +1,23 @@
+From: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Date: Thu, 6 Feb 2020 11:34:12 +0100
+Subject: Add sys.path information to wfuzz.py.
+
+Add sys.path.append to the main script to make it look
+under /usr/share/wfuzz/ for the rest of the modules it
+needs.
+---
+ src/wfuzz/wfuzz.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/wfuzz/wfuzz.py b/src/wfuzz/wfuzz.py
+index d6e1b5a..27e69c0 100644
+--- a/src/wfuzz/wfuzz.py
++++ b/src/wfuzz/wfuzz.py
+@@ -1,6 +1,7 @@
+ #!/usr/bin/env python3
+ import sys
+ import warnings
++sys.path.insert(0, "/usr/share/wfuzz/")
+ 
+ from .core import Fuzzer
+ from .facade import Facade

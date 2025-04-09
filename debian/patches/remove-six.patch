@@ -1,0 +1,47 @@
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -14,5 +14,4 @@
+ pycurl==7.43.0.6          # via wfuzz (setup.py)
+ pyparsing==2.4.7          # via packaging
+ pytest==6.0.1             # via wfuzz (setup.py)
+-six==1.15.0               # via packaging, wfuzz (setup.py)
+ toml==0.10.1              # via pytest
+--- a/setup.py
++++ b/setup.py
+@@ -32,7 +32,6 @@
+     'pycurl',
+     'pyparsing<2.4.2;python_version<="3.4"',
+     'pyparsing>=2.4.2;python_version>="3.5"',
+-    'six',
+     'configparser;python_version<"3.5"',
+     'chardet',
+ ]
+--- a/src/wfuzz/helpers/str_func.py
++++ b/src/wfuzz/helpers/str_func.py
+@@ -1,6 +1,5 @@
+ import re
+ import sys
+-import six
+ 
+ 
+ from .obj_dic import DotDict
+@@ -85,7 +84,7 @@
+         }
+     elif isinstance(text, list):
+         return [convert_to_unicode(element) for element in text]
+-    elif isinstance(text, six.string_types):
++    elif isinstance(text, str):
+         return text.encode("utf-8", errors="ignore")
+     else:
+         return text
+--- a/src/wfuzz/ui/console/output.py
++++ b/src/wfuzz/ui/console/output.py
+@@ -7,7 +7,7 @@
+ from functools import reduce
+ 
+ # Python 2 and 3: zip_longest
+-from six import StringIO
++from io import StringIO
+ 
+ try:
+     from itertools import zip_longest

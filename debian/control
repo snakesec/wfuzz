@@ -1,0 +1,33 @@
+Source: wfuzz
+Section: utils
+Priority: optional
+Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Uploaders: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-python3,
+               python3,
+               python3-legacy-cgi,
+               python3-setuptools,
+               python3-chardet,
+               python3-pycurl,
+               python3-pyparsing,
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Homepage: http://www.edge-security.com/wfuzz.php
+Vcs-Git: https://salsa.debian.org/pkg-security-team/wfuzz.git
+Vcs-Browser: https://salsa.debian.org/pkg-security-team/wfuzz
+
+Package: wfuzz
+Architecture: all
+Depends: python3-pycurl,
+         python3-pyparsing,
+         python3-legacy-cgi,
+         ${misc:Depends},
+         ${python3:Depends}
+Description: Web application bruteforcer
+ Wfuzz is a tool designed for bruteforcing Web Applications,
+ it can be used for finding resources not linked
+ directories, servlets, scripts, etc, bruteforce GET and
+ POST parameters for checking different kind of injections
+ (SQL, XSS, LDAP,etc), bruteforce Forms parameters
+ (User/Password), Fuzzing, etc.

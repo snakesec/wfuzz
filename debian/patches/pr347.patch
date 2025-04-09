@@ -1,0 +1,31 @@
+From: Stanislav Levin <slev@altlinux.org>
+Date: Tue, 14 Feb 2023 17:45:40 +0300
+Bug-Debian: https://bugs.debian.org/1042315
+Origin: https://github.com/xmendez/wfuzz/pull/347
+Subject: Correct dependency specification for pyparsing
+
+wildcard(*) is not allowed in inclusive comparison:
+https://peps.python.org/pep-0440/#inclusive-ordered-comparison
+
+Version is adjusted according to:
+https://github.com/xmendez/wfuzz/issues/206#issuecomment-673519577
+
+Fixes: https://github.com/xmendez/wfuzz/issues/345
+Signed-off-by: Stanislav Levin <slev@altlinux.org>
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 7f9b58d..17b089a 100644
+--- a/setup.py
++++ b/setup.py
+@@ -31,7 +31,7 @@ dev_requires = [
+ install_requires = [
+     'pycurl',
+     'pyparsing<2.4.2;python_version<="3.4"',
+-    'pyparsing>=2.4*;python_version>="3.5"',
++    'pyparsing>=2.4.2;python_version>="3.5"',
+     'six',
+     'configparser;python_version<"3.5"',
+     'chardet',
