@@ -1,7 +1,1 @@
-#!/bin/bash
-
-source /opt/ANDRAX/PYENV/python3/bin/activate
-
-/opt/ANDRAX/PYENV/python3/bin/wfencode "$@"
-
-deactivate
+/opt/ANDRAX/pipx/venvs/wfuzz/bin/wfencode
